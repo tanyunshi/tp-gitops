@@ -1,0 +1,23 @@
+name: Build hello go
+
+on: 
+  push:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v4
+       
+      - name: install go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '^1.13.1' # The Go version to download (if necessary) and use.
+
+      - name: Run go
+        run: go run project01/hello.go "Bonjour le monde"
